@@ -10,13 +10,13 @@
         <span style="font-size: 19px; text-align: center; display: block; margin-bottom: 25px;">ADMİN TEMPLATE</span>
     </div>
     <section>
-    <form class="login-form" [formGroup]="angForm" novalidate>
+    <form class="login-form">
         <div class="arkalogin">
             <div class="loginbaslik">Admin Login</div>
             <hr style="border: 1px solid #ccc;">
-            <input class="giris" type="email" name="email" placeholder="Email">
-            <input class="giris" type="password" name="password" placeholder="Password">
-            <input class="butonlogin" type="submit" name="" value="Login">
+            <input class="giris" type="email" name="email" placeholder="Email" #email>
+            <input class="giris" type="password" name="password" placeholder="Password" #password>
+            <Button (click)='Login(email.value,password.value)' class="butonlogin" type="submit" name="" >Login</Button>
         </div>
     </form>
     </section><br>
