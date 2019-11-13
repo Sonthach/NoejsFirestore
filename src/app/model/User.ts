@@ -1,5 +1,9 @@
-export interface User {
+export default class User {
     id: string; 
     email: string;
-    username : string; 
+    username : string;
+    diachi : string;
+    gioitinh : string;
+    ngaysinh : string;
+    sodienthoai: string; 
    }

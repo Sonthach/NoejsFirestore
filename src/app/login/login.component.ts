@@ -3,7 +3,6 @@ import { FormsModule, FormGroup } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
-import { User } from '../model/User';
 
 
 @Component({
@@ -12,7 +11,6 @@ import { User } from '../model/User';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  user : Observable<User>
   angForm: FormGroup;
 
 

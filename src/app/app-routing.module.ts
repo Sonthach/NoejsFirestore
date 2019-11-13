@@ -5,13 +5,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
+import { UserComponent } from './user/user.component';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // thêm dòng này
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home/admin', component: HomeComponent } // thêm dòng này
+  { path: 'home/admin', component: HomeComponent , children : [
+    { path: 'user', component: UserComponent }
+  ]},
 ];
 
 @NgModule({
