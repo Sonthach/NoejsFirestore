@@ -13,7 +13,6 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import * as $ from 'jquery/dist/jquery.min.js';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
@@ -36,7 +35,8 @@ import { UserComponent } from './user/user.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
 		AngularFirestoreModule,
-		AngularFireAuthModule,
+    AngularFireAuthModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

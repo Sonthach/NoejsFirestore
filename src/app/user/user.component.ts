@@ -3,8 +3,6 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { AngularFireAuth } from '@angular/fire/auth';
 import User from '../model/User';
 import { auth } from 'firebase';
-import { debug } from 'util';
-import { userInfo } from 'os';
 
 @Component({
   selector: 'app-user',
