@@ -16,6 +16,9 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
+import { BookComponent } from './book/book.component';
+import {DataTablesModule} from 'angular-datatables';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,8 @@ import { UserComponent } from './user/user.component';
     SidebarComponent,
     LoginComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +41,7 @@ import { UserComponent } from './user/user.component';
 		AngularFirestoreModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
