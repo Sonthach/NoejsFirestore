@@ -15,7 +15,6 @@ export class ContentComponent implements OnInit {
 			itemList: Observable<Item[]>;
 
   ngOnInit() {
-    this.itemList = this.service.getItems();
   }
 
 }

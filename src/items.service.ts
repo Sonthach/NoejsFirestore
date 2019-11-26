@@ -9,7 +9,11 @@ import { Item } from './app/model/Item';
 export class ItemsService {
   constructor(private http: HttpClient) { }
 
-		  getItems():Observable <Item[]>{
-      return this.http.get<Item[]>('http://localhost:8000/api/items/');
+		  getBooks(){
+        return this.http.get('http://localhost:8000/api/books')
+      }
+
+      createBook(data){
+        return this.http.post('http://localhost:8000/api/createBook',data)
       }
 }

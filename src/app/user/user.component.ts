@@ -25,11 +25,8 @@ export class UserComponent implements OnInit {
   ngOnInit() {
 
     this.user = new User()
-    this.users = 
     this.usersCollection = this.afs.collection<User>("Users");
-this.getUser()
-    
-
+    this.getUser()
   }
 getUser(){
   
