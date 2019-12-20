@@ -7,15 +7,19 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { BookComponent } from './book/book.component';
+import {AuthGuard} from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home/admin', component: HomeComponent , children : [
+  { path: 'home/admin', component: HomeComponent,
+  canActivate:[AuthGuard] , children : [
     { path: 'user', component: UserComponent },
-    { path: 'product', component : BookComponent}
+    { path: 'product', component : BookComponent},
+    {path: 'dashboard',component : DashboardComponent}
   ]},
 ];
 

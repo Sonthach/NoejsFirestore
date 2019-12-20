@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import {Item} from '../model/Item'
+import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +12,24 @@ import {Item} from '../model/Item'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  private itemsCollection: AngularFirestoreCollection<Item>;
-		  items: Observable<Item[]>;
-		  constructor(private readonly afs: AngularFirestore) {
-			this.itemsCollection = afs.collection<Item>('Item');
-			// .valueChanges() is simple. It just returns the 
-			// JSON data without metadata. If you need the 
-			// doc.id() in the value you must persist it your self
-			// or use .snapshotChanges() instead. 
-			this.items = this.itemsCollection.valueChanges();
+	email : string
+	displayName:string="";
+		  constructor(private cookie : CookieService,private userService:UserService,private auth : AuthService) {
+			
 		  }
 
   ngOnInit() {
-  }
+		// this.email = this.cookie.get("email")
+		// console.log(this.email)
 
+		this.userService.getCurrentUser().then(
+			user=> this.displayName = user.displayName!=null? user.displayName: user.email    );
+		  
+		  console.log(this.displayName);
+	}
+	
+	Logout(){
+		this.auth.logout();
+			location.href="/login";
+	}
 }

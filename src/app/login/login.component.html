@@ -1,7 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <section style="height: 100vh;">
     <div style="background-image: url(images/arka.jpg); background-attachment: fixed; background-size: cover; width: 100%; height: 100vh; position: relative;"  >
@@ -17,6 +13,7 @@
             <input class="giris" type="email" name="email" placeholder="Email" #email>
             <input class="giris" type="password" name="password" placeholder="Password" #password>
             <Button (click)='Login(email.value,password.value)' class="butonlogin" type="submit" name="" >Login</Button>
+            <Button (click)='tryGoogleLogin()' class="butonlogin" type="submit" name="" >Login with Google</Button>
         </div>
     </form>
     </section><br>

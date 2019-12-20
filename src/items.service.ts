@@ -16,4 +16,12 @@ export class ItemsService {
       createBook(data){
         return this.http.post('http://localhost:8000/api/createBook',data)
       }
+
+      modifyBook(data){
+        return this.http.put('http://localhost:8000/api/modify',data)
+      }
+
+      deleteBook(id){
+          return this.http.delete('http://localhost:8000/api/delete/'+id);
+        }
 }

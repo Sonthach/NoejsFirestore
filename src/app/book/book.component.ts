@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Book from '../model/Book';
 import { ItemsService } from 'src/items.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-book',
@@ -12,7 +13,10 @@ export class BookComponent implements OnInit {
   ngForm: FormGroup;
   book : Book
   books;
+  checktao : boolean = true;
+  checksua : boolean = false;
   theloai = ["Kinh dị","Lập trình","Viễn tưởng","Tình cảm"]
+  trangthai = ["Dự kiến","Đã xuất bản"]
   
   constructor(private fb: FormBuilder, private services : ItemsService) {
     this.createForm()
@@ -20,7 +24,10 @@ export class BookComponent implements OnInit {
 
   ngOnInit() {
     this.book = new Book();
-    this.getBooks();
+    this.services.getBooks().subscribe(data =>{
+      this.books = Object.assign(data)
+      this.initViewsTables(this.books);
+    })
   }
 
   createForm() {
@@ -30,14 +37,15 @@ export class BookComponent implements OnInit {
       theloai: ['', Validators.required],
       giatien: ['', Validators.required],
       tacgia: ['', Validators.required],
-      mota: ['', Validators.required]
+      mota: ['', Validators.required],
+      trangthai: ['',Validators.required]
     });
   }
 
   getBooks(){
     this.services.getBooks().subscribe(data =>{
       this.books = Object.assign(data)
-      this.initViewsTables(this.books);
+      this.updateForm(this.books);
     })
   }
 
@@ -48,7 +56,8 @@ export class BookComponent implements OnInit {
       mota : this.book.mota,
       theloai : this.book.theloai,
       giatien : this.book.giatien,
-      tacgia : this.book.tacgia
+      tacgia : this.book.tacgia,
+      trangthai : this.book.trangthai
     }
 
     this.services.createBook(data).subscribe(data =>{
@@ -64,7 +73,8 @@ export class BookComponent implements OnInit {
 
   initViewsTables(data){
     console.log(data)
-    $('#datatables').DataTable({
+    var currentEnviroment = this;
+    let table = $('#datatables').DataTable({
       data: data,
       destroy: true,
       columns: [
@@ -96,8 +106,73 @@ export class BookComponent implements OnInit {
           "render": function (data, type, row, meta) {
             return row.tacgia
           }
+        },
+
+        {
+          "render": function (data, type, row, meta) {
+            if(row.trangthai == 'Dự kiến')
+            {
+              return '<button style="width:95px" type="submit" class="btn btn-warning pull-left">'+row.trangthai+'</button>'
+            }
+            else
+              return '<button style="width:95px" type="submit" class="btn btn-info pull-left">'+row.trangthai+'</button>'
+          }
         }
       ]
     })
+
+
+    $('#datatables tbody').on('click' , 'tr', function() {
+      var data = Object.assign(table.row(this).data())
+
+      currentEnviroment.book = data;
+      currentEnviroment.checksua = true;
+      currentEnviroment.checktao = false;
+    })
+  }
+
+  back(){
+    this.checksua = false;
+    this.checktao = true;
+    this.book = new Book();
+  }
+
+  modifyBook(){
+    let data = {
+      id : this.book.id,
+      tensach : this.book.tensach,
+      ngayphathanh : this.book.ngayphathanh,
+      mota : this.book.mota,
+      theloai : this.book.theloai,
+      giatien : this.book.giatien,
+      tacgia : this.book.tacgia,
+      trangthai : this.book.trangthai,
+    }
+
+    this.services.modifyBook(data).subscribe(data =>{
+      let response = Object.assign(data)
+      if(response.status == 200){
+        window.alert("Sửa Sách thành công!!")
+        this.getBooks();
+      }else{
+        window.alert("Sửa Sách thất bại!!")
+      }
+        })
+  }
+
+  deleteBook(){
+    this.services.deleteBook(this.book.id).subscribe(data =>{
+      let response = Object.assign(data)
+      if(response.status == 200){
+        window.alert("Xóa Sách thành công!!")
+        this.getBooks();
+      }else{
+        window.alert("Xóa Sách thất bại!!")
+      }
+    })
+  }
+
+  updateForm(data){
+    $('#datatables').DataTable().clear().rows.add(data).draw();
   }
 }

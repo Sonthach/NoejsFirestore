@@ -6,4 +6,5 @@ export default class Book {
     theloai : string;
     giatien : string;
     tacgia: string; 
+    trangthai : string;
    }

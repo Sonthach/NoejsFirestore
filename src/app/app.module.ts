@@ -18,6 +18,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { BookComponent } from './book/book.component';
 import {DataTablesModule} from 'angular-datatables';
+import {CookieService} from 'ngx-cookie-service';
+import { AuthService } from './auth.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import {DataTablesModule} from 'angular-datatables';
     LoginComponent,
     HomeComponent,
     UserComponent,
-    BookComponent
+    BookComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +46,8 @@ import {DataTablesModule} from 'angular-datatables';
     AngularFireAuthModule,
     ReactiveFormsModule,
     DataTablesModule
-  ],
-  providers: [],
+    ],
+  providers: [CookieService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

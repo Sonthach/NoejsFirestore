@@ -68,8 +68,9 @@
                                 </div>
                                 <div class="col-md-6 pr-1">
                                         <div class="form-group">
-                                            <label>Giới tính</label>
-                                            <input formControlName="gioitinh" [(ngModel)] = "user.gioitinh" type="text" class="form-control" placeholder="e.g Nam">
+                                            <label>Giới tính</label><br>
+                                            <input formControlName="gioitinh" [(ngModel)] = "user.gioitinh" type="radio" value="Nam"> Nam <br>
+                                            <input formControlName="gioitinh" [(ngModel)] = "user.gioitinh" type="radio" value="Nữ"> Nữ
                                         </div>
                                     </div>
                             </div>
