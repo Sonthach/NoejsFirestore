@@ -47,7 +47,8 @@ getUser(){
       sodienthoai: ['', Validators.required],
       gioitinh: ['', Validators.required],
       ngaysinh: ['', Validators.required],
-      diachi: ['', Validators.required]
+      diachi: ['', Validators.required],
+      vitri: ['',Validators.required]
     });
   }
 
@@ -62,7 +63,8 @@ getUser(){
         sodienthoai: this.user.sodienthoai,
         diachi: this.user.diachi,
         gioitinh: this.user.gioitinh,
-        ngaysinh: this.user.ngaysinh
+        ngaysinh: this.user.ngaysinh,
+        vitri : this.user.vitri
       })
 
       this.user = {
@@ -114,6 +116,12 @@ getUser(){
         {
           "render": function (data, type, row, meta) {
             return row.ngaysinh
+          }
+        },
+
+        {
+          "render": function (data, type, row, meta) {
+            return row.vitri
           }
         }
       ]

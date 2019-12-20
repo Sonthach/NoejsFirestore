@@ -160,6 +160,54 @@ export class BookComponent implements OnInit {
         })
   }
 
+  tam = []
+  filter(e, item) {
+    if (e.target.checked) {
+      this.tam.push(item);
+      console.log(this.tam);
+      let listafterfilter = []
+      for (let i = 0; i < this.tam.length; i++) {
+        for (let j = 0; j < this.books.length; j++) {
+          if (this.tam[i] == this.books[j].trangthai) {
+
+            listafterfilter.push(this.books[j])
+
+          }
+        }
+        console.log(listafterfilter)
+      }
+      this.updateForm(listafterfilter)
+    }
+    else {
+      let updateItem = this.tam.find(this.findIndexToUpdate, item);
+
+      let index = this.tam.indexOf(updateItem);
+      let listafterfilter = []
+      this.tam.splice(index, 1);
+
+      if (this.tam.length == 0) {
+        this.updateForm(this.books)
+      } else {
+
+        for (let i = 0; i < this.tam.length; i++) {
+
+          for (let j = 0; j < this.books.length; j++) {
+
+            if (this.tam[i] == this.books[j].trangthai) {
+
+              listafterfilter.push(this.books[j])
+
+            }
+          }
+        }
+        this.updateForm(listafterfilter)
+      }
+    }
+  }
+  findIndexToUpdate(type) {
+    return type.id === this;
+  }
+
   deleteBook(){
     this.services.deleteBook(this.book.id).subscribe(data =>{
       let response = Object.assign(data)

@@ -5,5 +5,6 @@ export default class User {
     diachi : string;
     gioitinh : string;
     ngaysinh : string;
-    sodienthoai: string; 
+    sodienthoai: string;
+    vitri : string;
    }

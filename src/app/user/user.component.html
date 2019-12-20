@@ -1,7 +1,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
                         <h4 class="card-title">Danh sách tài khoản</h4>
@@ -15,6 +15,7 @@
                                         <th>Số điện thoại</th>
                                         <th>Giới tính</th>
                                         <th>Ngày sinh</th>
+                                        <th>Vị trí</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,17 @@
                                         </div>
                                     </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12 pr-1">
+                                    <div class="form-group">
+                                        <label>Vị trí</label>
+                                        <select  formControlName="vitri" [(ngModel)] = "user.vitri" type="text" class="form-control">
+                                            <option *ngFor="let vt of vitri">{{vt}}</option> </select>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
